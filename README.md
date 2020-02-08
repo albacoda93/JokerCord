@@ -1,7 +1,9 @@
 If you like my work and want to support it, you can donate here :)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/jokerware)
-
+# Attention Windows Users
+There is a known bug which causes many windows users to not be able to use the bot. Some related errors are KeyError not iterable and empty json files.
+A fix is in progress.
 # NEW UPDATE MULTI-1.0.0 3/2/2020
 This update brings a new awesome feature: Multi spam!
 Enable and disable spam in specific channels and set a delay for each of them! 
