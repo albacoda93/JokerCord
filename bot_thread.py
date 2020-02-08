@@ -11,7 +11,8 @@ import random
 import hashlib
 from pathlib import Path
 from threading import Thread
-path= str(Path().absolute()) 
+path= str(Path().absolute())
+print(path)
 legendaries = ['arceus', 'articuno', 'azelf', 'celebi', 'cobalion', 'cosmoem', 'cosmog', 'cresselia',
             'darkrai', 'deoxys', 'dialga', 'diancie', 'Entei', 'genesect', 'giratina', 'groudon',
             'heatran', 'ho-Oh', 'hoopa', 'jirachi', 'Keldeo', 'kyogre', 'kyurem', 'landorus',
