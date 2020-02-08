@@ -5,7 +5,7 @@ import threading
 import sys
 import json
 from pathlib import Path
-pth = str(Path().absolute())
+pth = str(Path().absolute()).replace("\", "/")
 pth_r = pth
 sys.path.append(pth_r)
 import bot_thread
