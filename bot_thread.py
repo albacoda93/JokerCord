@@ -11,7 +11,7 @@ import random
 import hashlib
 from pathlib import Path
 from threading import Thread
-path= str(Path().absolute()).replace("\", "/")
+path= str(Path().absolute()).replace("\\", "/")
 print(os.access(os.path.join(path,'User','channels.json'), os.R_OK))
 legendaries = ['arceus', 'articuno', 'azelf', 'celebi', 'cobalion', 'cosmoem', 'cosmog', 'cresselia',
             'darkrai', 'deoxys', 'dialga', 'diancie', 'Entei', 'genesect', 'giratina', 'groudon',
