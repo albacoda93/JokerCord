@@ -12,7 +12,7 @@ import hashlib
 from pathlib import Path
 from threading import Thread
 path= str(Path().absolute())
-print(path)
+print(os.access(os.path.join(path,'User','channels.json'), os.R_OK))
 legendaries = ['arceus', 'articuno', 'azelf', 'celebi', 'cobalion', 'cosmoem', 'cosmog', 'cresselia',
             'darkrai', 'deoxys', 'dialga', 'diancie', 'Entei', 'genesect', 'giratina', 'groudon',
             'heatran', 'ho-Oh', 'hoopa', 'jirachi', 'Keldeo', 'kyogre', 'kyurem', 'landorus',
