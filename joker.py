@@ -11,7 +11,7 @@ sys.path.append(pth_r)
 import bot_thread
 import asyncio
 from threading import Thread
-with open (str(os.path.join(pth_r,'preferences.json')).replace("\\","\/"),'r') as pr:
+with open (str(os.path.join(pth_r,'preferences.json')).replace("\\","/"),'r') as pr:
         pr_l = json.load(pr)
         pr.close()
 app = Flask(__name__)
@@ -41,22 +41,22 @@ app.secret_key = "mysecretkey"
 
 def add_pokemon(name):
     try:
-        with open(str(os.path.join(pth_r,'User','customs.json')).replace("\\","\/")) as cs:
+        with open(str(os.path.join(pth_r,'User','customs.json')).replace("\\","/")) as cs:
             jsdecoded = json.load(cs)
             jsdecoded[str(name)] = ""
             cs.close()
-        with open(str(os.path.join(pth_r,'User','customs.json')).replace("\\","\/"), 'w') as jfil:
+        with open(str(os.path.join(pth_r,'User','customs.json')).replace("\\","/"), 'w') as jfil:
             json.dump(jsdecoded, jfil)
             jfil.close()
     except Exception as e: print(e)
 
 def file_del(dfile, item):
-    with open(str(os.path.join(pth_r,dfile)).replace("\\","\/")) as f:
+    with open(str(os.path.join(pth_r,dfile)).replace("\\","/")) as f:
         list_del = json.load(f)
         f.close()
     if item in list_del:
         del list_del[item]
-    with open(str(os.path.join(pth_r,dfile)).replace("\\","\/"), "w") as n:
+    with open(str(os.path.join(pth_r,dfile)).replace("\\","/"), "w") as n:
         json.dump(list_del, n)
         n.close()
 def restart():
@@ -72,17 +72,17 @@ def home():
         restart()
         return redirect(url_for("home"))
     else:
-        with open (str(os.path.join(pth_r,'User','caught.txt')).replace("\\","\/")) as p:
+        with open (str(os.path.join(pth_r,'User','caught.txt')).replace("\\","/")) as p:
             pl = p.read().split(" ")
             p.close()
         return render_template("home.html", pokemons=(len(pl) - 2))
 @app.route("/delay/<string:g_id>/<string:dly>")
 def delay(g_id, dly):
-    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","\/"), "r") as glds:
+    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","/"), "r") as glds:
         d = json.load(glds)
         glds.close()
     d[g_id][3] = dly
-    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","\/"), "w") as glds:
+    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","/"), "w") as glds:
         json.dump(d, glds)
         glds.close()
     return redirect(url_for("custom_guilds"))
@@ -92,43 +92,43 @@ def update():
         return render_template("update.html")
 @app.route("/disable_guild/<string:id>")
 def disable_guild(id):
-    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","\/"), "r") as glds:
+    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","/"), "r") as glds:
         disable = json.load(glds)
         glds.close()
     disable[id][0] = "False"
-    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","\/"), "w") as glds:
+    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","/"), "w") as glds:
         json.dump(disable, glds)
         glds.close()
     return redirect(url_for("custom_guilds"))
 @app.route("/enable_guild/<string:id>")
 def enable_guild(id):
-    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","\/"), "r") as glds:
+    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","/"), "r") as glds:
         enable = json.load(glds)
         glds.close()
     enable[id][0] = "True"
-    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","\/"), "w") as glds:
+    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","/"), "w") as glds:
         json.dump(enable, glds)
         glds.close()
     return redirect(url_for("custom_guilds"))
 @app.route("/custom_guilds")
 def custom_guilds():
-    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","\/")) as glds:
+    with open (str(os.path.join(pth_r,'User','guilds.json')).replace("\\","/")) as glds:
         guilds = json.load(glds)
         glds.close()
     return render_template("custom_guilds.html", guilds=guilds)#, icons=icons, ids=ids)
 @app.route("/spam")
 def spam():
-    with open (str(os.path.join(pth_r,'User','channels.json')).replace("\\","\/")) as chnl:
+    with open (str(os.path.join(pth_r,'User','channels.json')).replace("\\","/")) as chnl:
         channels = json.load(chnl)
         chnl.close()
     return render_template("spam.html",channels=channels);
 @app.route("/spam_delay/<string:id>",methods=['POST'])
 def spam_delay(id):
-    with open (str(os.path.join(pth_r,'User','channels.json')).replace("\\","\/"),'r') as delay:
+    with open (str(os.path.join(pth_r,'User','channels.json')).replace("\\","/"),'r') as delay:
         change_delay=json.load(delay)
         delay.close()
     change_delay[id][2]=request.form.get(str(id))
-    with open (str(os.path.join(pth_r,'User','channels.json')).replace("\\","\/"),'w') as delay:
+    with open (str(os.path.join(pth_r,'User','channels.json')).replace("\\","/"),'w') as delay:
         json.dump(change_delay,delay)
         delay.close()
 
@@ -140,7 +140,7 @@ def custom_list():
     if request.method == "POST":
         if(request.form.get("new_pokemon")):
             n_p = request.form.get("new_pokemon")
-            with open (str(os.path.join(pth_r,'Lists','hashes.json')).replace("\\","\/")) as check:
+            with open (str(os.path.join(pth_r,'Lists','hashes.json')).replace("\\","/")) as check:
                 check_read = json.load(check)
                 check.close()
             if (n_p in check_read):
@@ -153,16 +153,16 @@ def custom_list():
                 bot_thread.write_json("custom_list", "True")
             elif(request.form.get("custom_list_state") == "custom_list_false"):
                 bot_thread.write_json("custom_list", "False")
-    with open (str(os.path.join(pth_r,'User','customs.json')).replace("\\","\/")) as c:
+    with open (str(os.path.join(pth_r,'User','customs.json')).replace("\\","/")) as c:
         cl = json.load(c)
         c.close()
     return render_template("custom_list.html", cl=cl, err=error)
 @app.route("/change_channel/<string:id>/<string:status>")
 def change_channel(id,status):
-    with open (str(os.path.join(pth_r,'User','channels.json')).replace("\\","\/"), 'r') as channels_list:
+    with open (str(os.path.join(pth_r,'User','channels.json')).replace("\\","/"), 'r') as channels_list:
         channels=json.load(channels_list)
         channels_list.close()
-    with open (str(os.path.join(pth_r,'User','channels.json')).replace("\\","\/"), 'w') as channels_write:
+    with open (str(os.path.join(pth_r,'User','channels.json')).replace("\\","/"), 'w') as channels_write:
         channels[str(id)][1]=status
         json.dump(channels,channels_write)
         channels_write.close()
@@ -171,13 +171,13 @@ def change_channel(id,status):
 @app.route("/del_custom/<string:id>")
 def del_custom(id):
     try:
-        file_del(str(os.path.join('User','customs.json')).replace("\\","\/"), id)
+        file_del(str(os.path.join('User','customs.json')).replace("\\","/"), id)
     except:
         pass
     return redirect(url_for("custom_list"))
 @app.route("/setup")
 def setup():
-    with open (str(os.path.join(pth_r,'preferences.json')).replace("\\","\/")) as p:
+    with open (str(os.path.join(pth_r,'preferences.json')).replace("\\","/")) as p:
         pref = json.load(p)
         p.close()
     if(pref["token"] != ""):
@@ -191,11 +191,11 @@ def settings():
 @app.route("/list", methods=['POST', 'GET'])
 def caught_list():
     l = []
-    with open (str(os.path.join(pth_r,'User','caught.txt')).replace("\\","\/")) as caught:
+    with open (str(os.path.join(pth_r,'User','caught.txt')).replace("\\","/")) as caught:
         lines = caught.read().split(" ")
         caught.close()
     if request.method == "POST":
-        open (str(os.path.join(pth_r,'User','caught.txt')).replace("\\","\/"),'w').close()
+        open (str(os.path.join(pth_r,'User','caught.txt')).replace("\\","/"),'w').close()
         return redirect(url_for("caught_list"))
     else:
         

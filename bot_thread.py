@@ -24,49 +24,49 @@ legendaries = ['arceus', 'articuno', 'azelf', 'celebi', 'cobalion', 'cosmoem', '
 
 #Define write to json
 def file_read(folder, fname):
-    caught = open(str(os.path.join(path,folder,fname)).replace("\\","\/")), 'r')
+    caught = open(str(os.path.join(path,folder,fname)).replace("\\","/"), 'r')
     lines = caught.readlines()
     caught.close()
     return lines
 def clear_file(folder, fname):
-    open(str(os.path.join(path,folder,fname)).replace("\\","\/")), 'w').close()
+    open(str(os.path.join(path,folder,fname)).replace("\\","/"), 'w').close()
 def file_append(folder, fname, append):
-    p = (str(os.path.join(path,folder,fname)).replace("\\","\/")))
+    p = (str(os.path.join(path,folder,fname)).replace("\\","/"))
     f = open(p, "a")
     f.write(append + " ")
     f.close()
 def add_pokemon(name):
     try:
-        with open(str(os.path.join(path,'User','customs.json')).replace("\\","\/"))) as cs:
+        with open(str(os.path.join(path,'User','customs.json')).replace("\\","/")) as cs:
             jsdecoded = json.load(cs)
             jsdecoded[str(name)] = ""
             cs.close()
-        with open(str(os.path.join(path,'User','customs.json')).replace("\\","\/")), 'w') as jfil:
+        with open(str(os.path.join(path,'User','customs.json')).replace("\\","/"), 'w') as jfil:
             json.dump(jsdecoded, jfil)
             jfil.close()
     except Exception as e: print(e)
 def write_json(wrtline, wrt):
     try:
-        with open(str(os.path.join(path,'preferences.json')).replace("\\","\/"))) as pr:
+        with open(str(os.path.join(path,'preferences.json')).replace("\\","/")) as pr:
             jsdecoded = json.load(pr)
             jsdecoded[str(wrtline)] = str(wrt)
             pr.close()
-        with open(str(os.path.join(path,'preferences.json')).replace("\\","\/")), 'w') as jfil:
+        with open(str(os.path.join(path,'preferences.json')).replace("\\","/"), 'w') as jfil:
             json.dump(jsdecoded, jfil)
             jfil.close()
     except Exception as e: print(e)
 
 #Presets
-with open (str(os.path.join(path,'preferences.json')).replace("\\","\/"))) as p:
+with open (str(os.path.join(path,'preferences.json')).replace("\\","/")) as p:
     prefs = json.load(p)
     p.close()
-with open (str(os.path.join(path,'User','guilds.json')).replace("\\","\/"))) as g:
+with open (str(os.path.join(path,'User','guilds.json')).replace("\\","/")) as g:
     guild_list = json.load(g)
     g.close()
-with open (str(os.path.join(path,'User','channels.json')).replace("\\","\/"))) as ch:
+with open (str(os.path.join(path,'User','channels.json')).replace("\\","/")) as ch:
     channel_list = json.load(ch)
     ch.close()
-with open (str(os.path.join(path,'User','customs.json')).replace("\\","\/"))) as cs:
+with open (str(os.path.join(path,'User','customs.json')).replace("\\","/")) as cs:
             custom_list = json.load(cs)
             cs.close()
 #Start
@@ -86,7 +86,7 @@ def gethash(img):
 ##########
 
 #Lists
-with open (str(os.path.join(path,'Lists','hashes.json')).replace("\\","\/"))) as h:
+with open (str(os.path.join(path,'Lists','hashes.json')).replace("\\","/")) as h:
     hashdata = json.load(h)
     h.close()
 
@@ -114,18 +114,18 @@ async def on_ready():
 
                 except:
                     channel_list[channel.id] = [channel.name+"@"+guild.name, "False", "5"]
-            with open (str(os.path.join(path,'User','channels.json')).replace("\\","\/")), 'w') as clr_channels:
+            with open (str(os.path.join(path,'User','channels.json')).replace("\\","/"), 'w') as clr_channels:
                 clr_channels.write("{}")
                 clr_channels.close()
 
-            with open(str(os.path.join(path,'User','channels.json')).replace("\\","\/")), 'w') as jfil:
+            with open(str(os.path.join(path,'User','channels.json')).replace("\\","/"), 'w') as jfil:
                 json.dump(channel_list, jfil)
                 jfil.close()
     try:
-        with open (str(os.path.join(path,'User','guilds.json')).replace("\\","\/")), 'w') as clr_guilds:
+        with open (str(os.path.join(path,'User','guilds.json')).replace("\\","/"), 'w') as clr_guilds:
             clr_guilds.write("{}")
             clr_guilds.close()
-        with open(str(os.path.join(path,'User','guilds.json')).replace("\\","\/")), 'w') as jfil:
+        with open(str(os.path.join(path,'User','guilds.json')).replace("\\","/"), 'w') as jfil:
             json.dump(guild_list, jfil)
             jfil.close()
     except Exception as e: print(e)
@@ -156,7 +156,7 @@ async def on_message(message):
                     return
             #print(url)
             #Open image and save it to JPG
-            openimg = open(str(os.path.join(path,'Assets','pokemon.jpg')).replace("\\","\/")),'wb')
+            openimg = open(str(os.path.join(path,'Assets','pokemon.jpg')).replace("\\","/"),'wb')
             openimg.write(requests.get(url).content)
             openimg.close()
             
@@ -164,7 +164,7 @@ async def on_message(message):
 
                 #Get hashes
 
-            mdhash = gethash(str(os.path.join(path,'Assets','pokemon.jpg')).replace("\\","\/")))
+            mdhash = gethash(str(os.path.join(path,'Assets','pokemon.jpg')).replace("\\","/"))
             #Compare hashes with the lists
             save_line = None
             
